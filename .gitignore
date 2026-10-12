@@ -9,4 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# Secrets and local notes
+.env
+.env.*
+!.env.example
+
 internal_documents/

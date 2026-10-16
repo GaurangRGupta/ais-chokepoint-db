@@ -48,6 +48,18 @@ Default is 10 minutes on the Singapore Strait box. The report is `reports/day1_s
 uv run pytest
 ```
 
+## Laptop ingest
+
+Needs `AISSTREAM_API_KEY`, `DATABASE_URL`, and blob auth in `.env`. Click-by-click: [docs/ingest.md](docs/ingest.md).
+
+```powershell
+cd adbms_project
+uv sync --group dev
+uv run adbms-ingest --duration 180
+```
+
+Raw frames land in blob `ais-raw` at `raw/ais/yyyy/mm/dd/hh.jsonl.gz`. Validated rows go into `ais.vessel_position` and `ais.vessel_static_current`. Bad coordinates, impossible speed, and future timestamps go to `ais.quarantine`.
+
 ## Status
 
-PostgreSQL Flexible Server and PostGIS 3.6 are up. Blob container `ais-raw` exists. Next after a passing spike: schema SQL, then always-on ingest on a small Linux VM.
+PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, and blob container `ais-raw` are up. The day-1 spike passed on Singapore. Next: fill `.env` and run a three-minute laptop ingest. The always-on Linux virtual machine comes after that.

@@ -8,7 +8,9 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "azure-storage-blob>=12.31.0",
     "orjson>=3.13.0",
+    "psycopg[binary]>=3.3.6",
     "pydantic-settings>=2.16.0",
     "python-dotenv>=1.2.4",
     "websockets>=17.2",
@@ -17,6 +19,7 @@ dependencies = [
 [project.scripts]
 adbms-project = "adbms_project:main"
 adbms-spike = "adbms_project.ingest.spike:main"
+adbms-ingest = "adbms_project.ingest.worker:main"
 
 [dependency-groups]
 dev = [

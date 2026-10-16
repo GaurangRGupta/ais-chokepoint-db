@@ -15,3 +15,5 @@ ORDER BY 1;
 ```
 
 Geofence polygons are loaded later (week 4). Do not insert fake ships by hand.
+
+After this script succeeds, follow [docs/ingest.md](../../docs/ingest.md) for the first laptop ingest.

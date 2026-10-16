@@ -60,6 +60,15 @@ uv run adbms-ingest --duration 180
 
 Raw frames land in blob `ais-raw` at `raw/ais/yyyy/mm/dd/hh.jsonl.gz`. Validated rows go into `ais.vessel_position` and `ais.vessel_static_current`. Bad coordinates, impossible speed, and future timestamps go to `ais.quarantine`.
 
+## Geofences and queries
+
+Load `sql/schema/002_geofences.sql`, then run the files in `sql/queries/`. Click-by-click: [docs/geofences.md](docs/geofences.md).
+
+```powershell
+uv run adbms-ingest
+uv run adbms-events
+```
+
 ## Status
 
-PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, and blob container `ais-raw` are up. The day-1 spike passed on Singapore. Next: fill `.env` and run a three-minute laptop ingest. The always-on Linux virtual machine comes after that.
+PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, blob container `ais-raw`, and laptop ingest are up. The day-1 spike passed on Singapore. Next: load geofences and run the query pack. The always-on Linux virtual machine comes after those queries.

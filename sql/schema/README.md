@@ -14,6 +14,8 @@ WHERE inhparent = 'ais.vessel_position'::regclass
 ORDER BY 1;
 ```
 
-Geofence polygons are loaded later (week 4). Do not insert fake ships by hand.
+Do not insert fake ships by hand.
 
-After this script succeeds, follow [docs/ingest.md](../../docs/ingest.md) for the first laptop ingest.
+After `001_core.sql`, follow [docs/ingest.md](../../docs/ingest.md) for laptop ingest.
+
+After ingest writes rows, load `002_geofences.sql` and follow [docs/geofences.md](../../docs/geofences.md).

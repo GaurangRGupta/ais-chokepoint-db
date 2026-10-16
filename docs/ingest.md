@@ -166,6 +166,8 @@ You can run without `--duration` and leave the terminal open while you work:
 uv run adbms-ingest
 ```
 
-That is still this laptop. History only grows while the process is running. The always-on Linux virtual machine is a later step, after this laptop path is proven.
+That is still this laptop. History only grows while the process is running.
+
+Next: [docs/geofences.md](geofences.md) (load polygons, run the query pack). The always-on Linux virtual machine comes after those queries.
 
 Do not commit `.env`.

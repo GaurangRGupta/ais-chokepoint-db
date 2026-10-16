@@ -20,6 +20,7 @@ dependencies = [
 adbms-project = "adbms_project:main"
 adbms-spike = "adbms_project.ingest.spike:main"
 adbms-ingest = "adbms_project.ingest.worker:main"
+adbms-events = "adbms_project.events.cli:main"
 
 [dependency-groups]
 dev = [

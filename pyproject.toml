@@ -7,10 +7,21 @@ authors = [
     { name = "Gaurang Gupta", email = "gaurangrgupta@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "orjson>=3.13.0",
+    "pydantic-settings>=2.16.0",
+    "python-dotenv>=1.2.4",
+    "websockets>=17.2",
+]
 
 [project.scripts]
 adbms-project = "adbms_project:main"
+adbms-spike = "adbms_project.ingest.spike:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]

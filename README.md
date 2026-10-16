@@ -32,6 +32,22 @@ You provision the cloud resources yourself. Follow [docs/azure-setup.md](docs/az
 
 Do not open PostgreSQL to the whole internet. Do not pick a General Purpose database SKU. Do not upgrade the student subscription to pay as you go for this course.
 
+## Day-1 feed spike
+
+Needs `AISSTREAM_API_KEY` in `.env`. Open Waters is automatic backup after 5 minutes of silence.
+
+```powershell
+cd adbms_project
+uv sync --group dev
+uv run adbms-spike
+```
+
+Default is 10 minutes on the Singapore Strait box. The report is `reports/day1_spike.md` (no secrets).
+
+```powershell
+uv run pytest
+```
+
 ## Status
 
-Phase 0 is the day-1 AIS feed spike (local, before schema). Azure Session A (resource group and storage) can happen in parallel. Database and virtual machine wait until you are ready to keep them on.
+PostgreSQL Flexible Server and PostGIS 3.6 are up. Blob container `ais-raw` exists. Next after a passing spike: schema SQL, then always-on ingest on a small Linux VM.

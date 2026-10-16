@@ -1,2 +1,2 @@
 def main() -> None:
-    print("Hello from adbms-project!")
+    print("AIS chokepoint database. Run: uv run adbms-spike")

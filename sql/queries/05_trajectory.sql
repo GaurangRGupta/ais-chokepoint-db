@@ -1,11 +1,20 @@
--- Q5. Trajectory for the MMSI with the most stored positions in the last 6 hours.
--- Shape: mmsi, n_points, traj geography. Open geom in pgAdmin Geometry Viewer.
+-- Q5. Trajectory for the MMSI with the most stored history points.
+-- Shape: mmsi, n_points, traj geography. Open traj in pgAdmin Geometry Viewer.
+-- Uses the whole history table so a laptop overnight gap does not empty the result.
+-- Needs at least two points for one MMSI. The current table is not a path.
+
+SELECT
+    (SELECT count(*) FROM ais.vessel_position) AS positions,
+    (SELECT count(*) FROM ais.vessel_position_current) AS current_ships,
+    (SELECT min(valid_time) FROM ais.vessel_position) AS min_valid_time,
+    (SELECT max(valid_time) FROM ais.vessel_position) AS max_valid_time,
+    clock_timestamp() AS db_now;
 
 WITH pick AS (
     SELECT mmsi
     FROM ais.vessel_position
-    WHERE valid_time >= clock_timestamp() - interval '6 hours'
     GROUP BY mmsi
+    HAVING count(*) >= 2
     ORDER BY count(*) DESC
     LIMIT 1
 )
@@ -19,5 +28,4 @@ SELECT
 FROM ais.vessel_position p
 JOIN pick ON pick.mmsi = p.mmsi
 LEFT JOIN ais.vessel_static_current s ON s.mmsi = p.mmsi
-WHERE p.valid_time >= clock_timestamp() - interval '6 hours'
 GROUP BY p.mmsi, s.name;

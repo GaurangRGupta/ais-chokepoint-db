@@ -60,6 +60,12 @@ uv run adbms-ingest --duration 180
 
 Raw frames land in blob `ais-raw` at `raw/ais/yyyy/mm/dd/hh.jsonl.gz`. Validated rows go into `ais.vessel_position` and `ais.vessel_static_current`. Bad coordinates, impossible speed, and future timestamps go to `ais.quarantine`.
 
+## Database administrator manual
+
+Inventory, architecture, attribute dictionaries, collection rates, and diagnostic SQL: [docs/dba-manual.md](docs/dba-manual.md).
+
+In pgAdmin, connect to database `chokepoint`, open `sql/diagnostics/catalog.sql`, press F5. One result grid per statement (D1 to D32). For a single ship, edit the MMSI in `sql/diagnostics/one_ship.sql`.
+
 ## Geofences and queries
 
 Load `sql/schema/002_geofences.sql`, then run the files in `sql/queries/`. Click-by-click: [docs/geofences.md](docs/geofences.md).
@@ -71,4 +77,4 @@ uv run adbms-events
 
 ## Status
 
-PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, blob container `ais-raw`, and laptop ingest are up. The day-1 spike passed on Singapore. Next: load geofences and run the query pack. The always-on Linux virtual machine comes after those queries.
+PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, blob container `ais-raw`, and laptop ingest are up. The day-1 spike passed on Singapore. The DBA manual and diagnostic catalogue are in `docs/dba-manual.md` and `sql/diagnostics/`. Next: confirm geofences, run the query pack, then consider the always-on Linux virtual machine after Q1 and Q9 evidence.

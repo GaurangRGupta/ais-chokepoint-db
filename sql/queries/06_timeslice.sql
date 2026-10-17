@@ -1,9 +1,12 @@
 -- Q6. Traffic picture at time T in the world (valid_time), not merely the current table.
--- T is 10 minutes ago. Distinct on MMSI, latest valid_time at or before T.
+-- T is 10 minutes before the latest stored AIS event, so this works after ingest stops.
 -- Shape: same idea as vessel_position_current, but as of T.
 
 WITH t AS (
-    SELECT clock_timestamp() - interval '10 minutes' AS world_t
+    SELECT coalesce(
+        (SELECT max(valid_time) FROM ais.vessel_position),
+        clock_timestamp()
+    ) - interval '10 minutes' AS world_t
 ),
 ranked AS (
     SELECT

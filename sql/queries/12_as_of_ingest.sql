@@ -3,7 +3,10 @@
 -- the world slice and not in the as-of-ingest slice.
 
 WITH t AS (
-    SELECT clock_timestamp() - interval '10 minutes' AS t_cut
+    SELECT coalesce(
+        (SELECT max(valid_time) FROM ais.vessel_position),
+        clock_timestamp()
+    ) - interval '10 minutes' AS t_cut
 ),
 world AS (
     SELECT DISTINCT ON (p.mmsi)

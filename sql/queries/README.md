@@ -10,7 +10,7 @@ Keep ingest running in another terminal while you query, so current positions st
 | `02_nearest_neighbour.sql` | Five ships nearest to 1.20 N, 103.85 E |
 | `03_transits_24h.sql` | Who transited, and in which direction? |
 | `04_dwellers_now.sql` | Who is sitting in Western Anchorage? |
-| `05_trajectory.sql` | Path of the busiest MMSI in the last 6 hours |
+| `05_trajectory.sql` | Path of the MMSI with the most stored history points |
 | `06_timeslice.sql` | Traffic picture at T (valid time) |
 | `07_stale_sla.sql` | No fresh position for 15 minutes |
 | `08_ingest_lag.sql` | How late ingest is versus AIS event time |
@@ -22,3 +22,5 @@ Keep ingest running in another terminal while you query, so current positions st
 For EXPLAIN evidence, copy the `EXPLAIN (ANALYZE, BUFFERS)` block from the file, run it, and save the text (no secrets) into `reports/query_evidence.md` later.
 
 Q1 or Q5 `geom` / `traj` columns can be opened with the pgAdmin Geometry Viewer for a map screenshot.
+
+Database inventory, rates, and health checks: [docs/dba-manual.md](../../docs/dba-manual.md) and `sql/diagnostics/catalog.sql`.

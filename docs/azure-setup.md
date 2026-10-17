@@ -424,7 +424,7 @@ Home internet IPs change. When pgAdmin suddenly fails, it is usually this. Add a
 
 ## Session C. Linux virtual machine (ingest host)
 
-The worker must stay on. This virtual machine is that host. Create it in the **same region** as PostgreSQL.
+The worker must stay on. This virtual machine is that host. Create it in the **same region** as PostgreSQL (this project: Central India). After the machine exists, software install is [ingest-vm.md](ingest-vm.md).
 
 ### C1. Pick a size
 
@@ -474,7 +474,7 @@ PowerShell on Windows. `--generate-ssh-keys` reuses `~\.ssh\id_rsa` if it exists
 az vm create `
   --resource-group rg-ais-chokepoint `
   --name vm-ais-ingest `
-  --location eastus `
+  --location centralindia `
   --image Ubuntu2204 `
   --size Standard_B1s `
   --admin-username azureuser `
@@ -699,4 +699,4 @@ Tell the rest of the team:
 
 Do not send the admin password or storage keys in chat. Share them in person or a password manager.
 
-The application schema, roles `ingest_writer` / `analyst_ro`, and the systemd ingest unit are later implementation steps. They are not part of this setup session.
+After the virtual machine exists, install the worker with [ingest-vm.md](ingest-vm.md) and `deploy/ais-ingest.service`. Roles `ingest_writer` / `analyst_ro` remain a later DBA drill.

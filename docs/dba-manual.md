@@ -504,7 +504,7 @@ Rates depend on the feed and on whether the worker is running. The figures below
 
 The day-1 spike (10 minutes, same box, report `reports/day1_spike.md`) measured 0.265 AIS application messages per second, 98 distinct MMSI, mostly `PositionReport`. Stored history on 16 October was slower than that (0.14 position rows per second) because static messages, duplicates, and Class B gaps do not all become new `vessel_position` rows. Ingest lag on that capture was about two seconds (median `ingest_time - valid_time`).
 
-These rates drop to zero when the laptop worker stops. History remains. Current rows remain but grow stale. Heartbeat stops. That is why an always-on virtual machine is planned. It is not required to understand the schema.
+These rates drop to zero when the laptop worker stops. History remains. Current rows remain but grow stale. Heartbeat stops. Put the worker on Ubuntu with [ingest-vm.md](ingest-vm.md) so history continues overnight.
 
 Worked example from that capture: MMSI 563009190, name `NOBLE JEWEL TG45`, a Singapore-flagged harbour tug (IMO 9386108). Fourteen history points between 19:54 and 20:32 UTC, all near 1.2619 N, 103.8455 E. That is a correctly loaded stationary track. A sitting tug reports often, so it can win "most points" without crossing the strait. Use `sql/diagnostics/one_ship.sql` to reprint that series.
 

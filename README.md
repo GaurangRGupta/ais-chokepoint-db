@@ -75,6 +75,12 @@ uv run adbms-ingest
 uv run adbms-events
 ```
 
+## Always-on ingest virtual machine
+
+The laptop cannot stay on. Put the worker on Ubuntu virtual machine `vm-ais-ingest` in Central India. Click-by-click: [docs/ingest-vm.md](docs/ingest-vm.md). systemd unit: `deploy/ais-ingest.service`.
+
+You create the virtual machine yourself in the portal or with Azure CLI. Stop laptop ingest after the unit is healthy.
+
 ## Status
 
-PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, blob container `ais-raw`, and laptop ingest are up. The day-1 spike passed on Singapore. The DBA manual and diagnostic catalogue are in `docs/dba-manual.md` and `sql/diagnostics/`. Next: confirm geofences, run the query pack, then consider the always-on Linux virtual machine after Q1 and Q9 evidence.
+PostgreSQL Flexible Server, PostGIS 3.6, schema `001_core.sql`, blob container `ais-raw`, laptop ingest, DBA manual, and diagnostic catalogue are up. The day-1 spike passed on Singapore. Next: create `vm-ais-ingest` and run the worker under systemd ([docs/ingest-vm.md](docs/ingest-vm.md)). Keep capturing Q1 to Q12 in pgAdmin while ingest is live.

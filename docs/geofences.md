@@ -17,7 +17,7 @@ uv run adbms-ingest
 
 No `--duration`. Leave it until you close the laptop. Ctrl+C flushes the blob. If you must close the machine soon, a 20 to 30 minute run is still enough for Q1, Q2, Q8, Q9, and Q10.
 
-The always-on virtual machine is the session after these queries. Do not create it until you have at least Q1 and Q9 screenshots.
+Always-on ingest on Ubuntu: [ingest-vm.md](ingest-vm.md). Keep Q1 and Q9 screenshots for the report while the worker is live.
 
 ## 2. Load the geofences
 

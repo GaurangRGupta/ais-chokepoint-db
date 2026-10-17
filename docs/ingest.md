@@ -2,7 +2,7 @@
 
 The schema is loaded. Next you put the database URL and the storage key into `.env`, then run a three-minute ingest from this laptop. The worker writes raw Automatic Identification System (AIS) frames to blob container `ais-raw` and inserts validated rows into PostgreSQL.
 
-Do not put passwords, keys, or connection strings into Git, chat, or the report. Do not create the ingest virtual machine yet.
+Do not put passwords, keys, or connection strings into Git, chat, or the report. After this laptop path works, the always-on host is [ingest-vm.md](ingest-vm.md).
 
 ## 1. Open `.env`
 
@@ -168,6 +168,6 @@ uv run adbms-ingest
 
 That is still this laptop. History only grows while the process is running.
 
-Next: [docs/geofences.md](geofences.md) (load polygons, run the query pack). The always-on Linux virtual machine comes after those queries.
+Next: [geofences.md](geofences.md) (load polygons, run the query pack). Always-on ingest: [ingest-vm.md](ingest-vm.md).
 
 Do not commit `.env`.

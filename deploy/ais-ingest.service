@@ -1,0 +1,23 @@
+[Unit]
+Description=AIS chokepoint ingest worker
+Documentation=https://github.com/GaurangRGupta/ais-chokepoint-db
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=azureuser
+Group=azureuser
+WorkingDirectory=/opt/ais-chokepoint
+EnvironmentFile=/etc/ais-chokepoint.env
+ExecStart=/opt/ais-chokepoint/.venv/bin/adbms-ingest
+Restart=always
+RestartSec=15
+TimeoutStopSec=40
+KillSignal=SIGINT
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ais-ingest
+
+[Install]
+WantedBy=multi-user.target
